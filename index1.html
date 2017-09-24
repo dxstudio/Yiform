@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>心表格</title>
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .row .row {
+            margin-bottom: 0px;
+            margin-top: 20px;
+        }
+
+        [class*="col-"] {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.81);
+            border: 1px solid rgba(198, 198, 198, 0.81);
+        }
+
+        [class*="col-xm-12"] {
+            font-size: 40px;
+        }
+
+        .input_out {
+            width: 200px;
+            height: 85%;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .input_move {
+            width: 200px;
+            height: 85%;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+        }
+
+        label h3 {
+            color: black;
+        }
+
+        @media (min-width: 600px) {
+            .header img {
+                width: 610px;
+                margin: 0px auto 0px;
+            }
+
+            .bottom img {
+                width: 610px;
+                margin: 0px auto;
+            }
+        }
+
+        @media (min-width: 800px) {
+            .header img {
+                width: 810px;
+                margin: 0px auto 0px;
+            }
+
+            .bottom img {
+                width: 810px;
+                margin: 0px auto;
+            }
+        }
+
+        @media (min-width: 1000px) {
+            .header img {
+                width: 1110px;
+                margin: 0px auto 0px;
+            }
+
+            .bottom img {
+                width: 1110px;
+                margin: 0px auto;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .header img {
+                width: 1210px;
+                height: auto;
+                padding: 0px;
+            }
+
+            .bottom img {
+                width: 1210px;
+                height: auto;
+                padding: 0px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .header img {
+                width: 1410px;
+                margin: 0px auto 0px;
+            }
+
+            .bottom img {
+                width: 1410px;
+                margin: 0px auto;
+            }
+        }
+    </style>
+    <script>
+        //获取外部CSS样式操作
+        function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[attr];
+            }
+            else {
+                return getComputedStyle(obj, false)[attr];
+            }
+        }
+        //侧边栏浮动
+        var timer = null;
+        function move(end) {
+            clearInterval(timer);       //首先，先关闭之前如果有开启的setInterval;
+            timer = setInterval(function () {
+                var oDiv = document.getElementById("transform");
+                var speed = (end - oDiv.offsetTop) / 5;     //计算DIV要走的速度，DIV要走的速度就等于（终点-offsetTop高度）/缩放系数
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);       //为了避免小数，将其取整
+                if (oDiv.offsetTop == end) {        //当DIV到达终点，则关闭setInterval;
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv.style.top = oDiv.offsetTop + speed + 'px';     //移动div
+                }
+            }, 30);
+        }
+        window.onscroll = function () {
+            var oDiv = document.getElementById("transform");
+            //获取移动高度
+            var DivScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            //调用传参，其中里面的参数是DIV要走的终点。也就是（可视高度-DIV高度）/2+移动高度
+            move(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight) / 2 + DivScroll));
+        };
+    </script>
+</head>
+<body>
+<div class="header" id="header">
+    <img src="images/header.png">
+</div>
+<div class="container"  id="container">
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model2.html" class="thumbnail">
+                <img src="images/model2.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="Model1.html" class="thumbnail">
+                <img src="images/model1.JPG">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="bottom" id="bottom">
+    <img src="images/bottom.png">
+</div>
+
+<script src="JS/jquery-2.2.4.min.js"></script>
+<script src="JS/bootstrap.min.js"></script>
+</body>
+</html>
